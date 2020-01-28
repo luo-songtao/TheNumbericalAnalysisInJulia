@@ -1,0 +1,38 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup Julia environment
+      uses: julia-actions/setup-julia@v1.0.3
+      with:
+        # The Julia version to download (if necessary) and use. Example: 1.0.4
+        version: 1.3
+        # Architecture of the Julia binaries. Defaults to x64.
+        arch: x64
+    - name: build-and-deploy
+      env: 
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY:  ${{ secrets.GITHUB_REPOSITORY }} 
+        GITHUB_SHA:  ${{ secrets.GITHUB_SHA }} 
+        GITHUB_USERNAME: luo-songtao
+        GITHUB_EMAIL: ryomawithlst@gmail.com
+      run: |
+        julia -e 'import Pkg;Pkg.add("Documenter")'
+        cd docs
+        julia --color=yes make.jl
+        cd ..
+        mv docs/build docs/dist
+        git checkout -b gh-pages
+        git config user.email "$GITHUB_EMAIL"
+        git config user.name "$GITHUB_USERNAME"
+        git add docs/dist
+        git commit -m "update by $GITHUB_SHA"
+        git subtree push --prefix=docs/dist "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
