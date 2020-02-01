@@ -9,4 +9,10 @@ export fixed_point_iteration
 include("equation_solving/newton_raphson_method.jl")
 export newton_raphson_method
 
+include("equation_solving/secant.jl")
+export secant
+
+include("equation_solving/regula_falsi.jl")
+export regula_falsi
+
 end
