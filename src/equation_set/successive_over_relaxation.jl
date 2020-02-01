@@ -1,6 +1,6 @@
 """
 # 连续过松弛(SOR)
-    successive_over_relaxation(a, b, x_0, n, k)
+    successive_over_relaxation(A, b, x_0, n, k)
 
 连续过松弛方法使用高斯-赛德尔方法的求解方向，并使用过松弛以加快收敛速度。
 
@@ -17,13 +17,13 @@ x_{k+1} = (1-\\omega)x_k + \\omega D^{-1}(b-Lx_{k+1}-Ux_k), k=0,1,2,......
 ```
 
 # Arguments
-- `a`: 表示系数矩阵A
+- `A`: 表示系数矩阵A
 - `b`: 表示常数项b
 - `x_0`: 初始估计(向量)
 - `n`: 方程数
 - `k`: 迭代次数
 
-# Usage
+# Example
 ```jldoctest
 julia> A = Float64[3 1 -1; 2 4 1; -1 2 5]
 3×3 Array{Float64,2}:
@@ -47,13 +47,13 @@ julia> x = successive_over_relaxation(A, b, x_0, 3, 50, 1.25)    # 该例中约3
   1.0
 ```
 """
-function successive_over_relaxation(a, b, x_0, n, k, w=1.25)
+function successive_over_relaxation(A, b, x_0, n, k, w=1.25)
     x_k = x_0
     for i = 1:k
         for j = 1:n
-            L_mult = reshape(a[j, 1:j-1], (1, j-1)) * reshape(x_k[1:j-1], (j-1, 1))
-            U_mult = reshape(a[j, j+1:n], (1, n-j)) * reshape(x_k[j+1:n], (n-j, 1))
-            x_k[j] = (1-w)x_k[j] + w*((1/a[j,j]) * (b[j] - L_mult[1] - U_mult[1]))
+            L_mult = reshape(A[j, 1:j-1], (1, j-1)) * reshape(x_k[1:j-1], (j-1, 1))
+            U_mult = reshape(A[j, j+1:n], (1, n-j)) * reshape(x_k[j+1:n], (n-j, 1))
+            x_k[j] = (1-w)x_k[j] + w*((1/A[j,j]) * (b[j] - L_mult[1] - U_mult[1]))
         end
     end
     return x_k

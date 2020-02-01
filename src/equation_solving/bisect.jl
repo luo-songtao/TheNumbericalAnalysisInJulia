@@ -10,7 +10,7 @@
 - `b`: 右区间点
 - `err`: 误差
 
-# Usage
+# Example
 ```jldoctest
 julia> bisect(x->x^3+x-1, 0, 1, 0.00005)
 0.682342529296875

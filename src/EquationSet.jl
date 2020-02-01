@@ -18,4 +18,7 @@ export gauss_seidel
 include("equation_set/successive_over_relaxation.jl")
 export successive_over_relaxation
 
+include("equation_set/cholesky_decomposition.jl")
+export cholesky_decomposition
+
 end

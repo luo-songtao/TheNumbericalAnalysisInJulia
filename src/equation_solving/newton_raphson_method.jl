@@ -15,7 +15,7 @@ x_{i+1} = x_i - \\frac {f(x_i)}{f'(x_i)},(i=0,1,2,3,...)
 - `k`: 迭代次数
 - `m`: 重根树(default=1)
 
-# Usage
+# Example
 ```jldoctest
 julia> newton_raphson_method(x->x^3 +x -1, x->3x^2 +1, -0.7, 20)
 0.6823278038280193

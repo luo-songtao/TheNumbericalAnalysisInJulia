@@ -1,6 +1,6 @@
 """
 # 雅可比方法
-    jacobi(a, b, x_0, n, k)
+    jacobi(A, b, x_0, n, k)
 
 雅可比方法是方程组系统中的一种形式的不动点迭代。在FPI中第一步是重写方程，进而求解未知量。
 
@@ -27,15 +27,15 @@ x_{k+1} = D^{-1}(b-(L+U)x_k), k=0,1,2,......
 ```
 
 # Arguments
-- `a`: 表示系数矩阵A
+- `A`: 表示系数矩阵A
 - `b`: 表示常数项b
 - `x_0`: 初始估计(向量)
 - `n`: 方程数
 - `k`: 迭代次数
 
-# Usage
+# Example
 ```jldoctest
-julia> m = Float64[3 1; 1 2]
+julia> A = Float64[3 1; 1 2]
 2×2 Array{Float64,2}:
  3.0  1.0
  1.0  2.0
@@ -43,20 +43,20 @@ julia> b = Float64[5; 5]
 2-element Array{Float64,1}:
  5.0
  5.0
-julia> x = jacobi(m,b,[0;0], 2, 100)
+julia> x = jacobi(A,b,[0;0], 2, 100)
 2-element Array{Float64,1}:
  1.0
  2.0
 ```
 """
-function jacobi(a, b, x_0, n, k)
+function jacobi(A, b, x_0, n, k)
     D_inverse = zeros(Float64, (n, n))
     for i = 1:n
-        D_inverse[i,i] = 1/a[i,i]    # D是对角线矩阵，其逆矩阵直接取倒
+        D_inverse[i,i] = 1/A[i,i]    # D是对角线矩阵，其逆矩阵直接取倒
     end
     x_k = x_0
     for i = 1:k
-        x_k = D_inverse * (b - (a-inv(D_inverse))*x_k)
+        x_k = D_inverse * (b - (A-inv(D_inverse))*x_k)
     end
     return x_k
 end

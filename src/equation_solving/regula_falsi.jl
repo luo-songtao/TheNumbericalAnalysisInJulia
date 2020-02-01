@@ -14,7 +14,7 @@ c = a - \\frac {f(a)(a-b)}{f(a)-f(b)} = \\frac {bf(a)-af(b)}{f(a)-f(b)}
 - `b`: 初始估计值2
 - `k`: 迭代次数
 
-# Usage
+# Example
 ```jldoctest
 julia> regula_falsi(x->x^3 +x -1, 0, 1, 100)
 0.6823278038280193

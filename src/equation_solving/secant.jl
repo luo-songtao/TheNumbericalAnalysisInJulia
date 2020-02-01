@@ -16,7 +16,7 @@ x_{i+1} = x_i - \\frac {f(x_i)(x_i-x_{i-1})}{f(x_i)-f(x_{i-1})},(i=0,1,2,3,...)
 - `x_1`: 初始估计值2
 - `k`: 迭代次数
 
-# Usage
+# Example
 ```jldoctest
 julia> secant(x->x^3 +x -1, 0, 1, 20)
 0.6823278038280193
