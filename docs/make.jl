@@ -31,3 +31,9 @@ makedocs(
         "API"=>"index.md"
     ]
 )
+
+deploydocs(
+    repo = "github.com/luo-songtao/TheNumbericalAnalysisInJulia.git",
+    devbranch = "dev",
+    devurl = "dev"
+)

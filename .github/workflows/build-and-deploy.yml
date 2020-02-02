@@ -28,12 +28,3 @@ jobs:
         julia -e 'import Pkg;Pkg.add("Documenter")'
         cd docs
         julia --color=yes make.jl
-        cd ..
-        mv docs/build docs/dist
-        git checkout -b gh-pages
-        git config user.email "$GITHUB_EMAIL"
-        git config user.name "$GITHUB_USERNAME"
-        git subtree pull --prefix=docs/dist "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
-        git add docs/dist
-        git commit -m "update by $GITHUB_SHA"
-        git subtree push --prefix=docs/dist "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
