@@ -1,12 +1,10 @@
 """
-# 试位方法--割线方法推广1
+# 试位方法
     regula_falsi(f, a, b, k)
-试位方法类似二分法，但其中的中点被类似割线方法的近似所替换
+试位方法是割线方法推广，类似二分法，但其中的中点被类似割线方法的近似所替换
 
-```math
-a, b = 初始估计值\\\\
-c = a - \\frac {f(a)(a-b)}{f(a)-f(b)} = \\frac {bf(a)-af(b)}{f(a)-f(b)}
-```
+## 试位方法迭代公式
+``\\begin{aligned} a, b &= 初始估计值\\\\ c &= a - \\frac {f(a)(a-b)}{f(a)-f(b)} = \\frac {bf(a)-af(b)}{f(a)-f(b)} \\end{aligned}``
 
 # Arguments
 - `f`: `f(x)`函数

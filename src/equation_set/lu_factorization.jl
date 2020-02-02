@@ -1,7 +1,7 @@
 using LinearAlgebra
 
 """
-# 基于LU分解表示朴素的高斯消元法
+# LU分解--高斯消去法的矩阵形式
     lu_factorization(A, b, n)
 
 将系数矩阵分解为下三角矩阵L和上三角矩阵U，再求解x，可降低运算次数。
@@ -10,12 +10,8 @@ LU分解使得在朴素的高斯消元法中的消去过程，向量b没有参�
 
 注意：当前实现的算法如果遇到0主元会抛出异常并终止
 
-```math
-A = LU \\\\
-Ax=b \\Longleftrightarrow LUx=b \\\\
-Lc = b \\Rightarrow c \\\\
-Ux=c \\Rightarrow x \\\\
-```
+## LU分解--高斯消去法的矩阵形式推导：
+``\\begin{aligned} A &= LU \\\\ Ax &=b \\Longleftrightarrow LUx=b \\\\ Lc &= b \\Rightarrow c \\\\ Ux &=c \\Rightarrow x \\end{aligned}``
 
 # Arguments
 - `A`: 表示系数矩阵A

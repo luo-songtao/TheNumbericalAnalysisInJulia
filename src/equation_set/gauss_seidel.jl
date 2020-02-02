@@ -11,15 +11,10 @@
 - `L`表示`A`的下三角矩阵(主对角线以下的元素)
 - `U`表示`A`的上三角矩阵(主对角线以上的元素)
 
-```math
-Ax = b \\Longleftrightarrow (L+D)x_{k+1} = b - Ux_k
-```
+``Ax &= b \\Longleftrightarrow (L+D)x_{k+1} = b - Ux_k \\\\``
 
 ## 高斯-赛德尔方法迭代公式：
-``x_0 =`` 初始估计
-```math
-x_{k+1} = D^{-1}(b-Lx_{k+1}-Ux_k), k=0,1,2,......
-```
+``\\begin{aligned} x_0 &= 初始估计 \\\\ x_{k+1} &= D^{-1}(b-Lx_{k+1}-Ux_k), k=0,1,2,...... \\end{aligned}``
 
 # Arguments
 - `A`: 表示系数矩阵A

@@ -1,15 +1,13 @@
 using LinearAlgebra
 
 """
-# 使用置换的LU分解
+# PA=LU分解
     lu_factorization_with_permutation(A, b, n)
 
 为避免淹没问题，在对矩阵A进行LU分解前，先对主元列进行判断，将主元列最大的一行与当前的首行进行置换
 
-```math
-P: 置换矩阵 \\\\
-A = LU \\Longleftrightarrow PA=LU \\\\
-```
+## PA=LU分解推导：
+``\\begin{aligned} P &: 置换矩阵 \\\\ A = LU \\Longleftrightarrow PA&=LU \\end{aligned}``
 
 # Arguments
 - `A`: 表示系数矩阵A

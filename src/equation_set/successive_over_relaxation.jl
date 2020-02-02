@@ -11,10 +11,7 @@
 当``\\omega=1``时，SOR方法就是高斯-赛德尔方法
 
 ## 连续过松弛(SOR)迭代公式：
-``x_0 = ``初始估计
-```math
-x_{k+1} = (1-\\omega)x_k + \\omega D^{-1}(b-Lx_{k+1}-Ux_k), k=0,1,2,......
-```
+``\\begin{aligned} x_0 &= 初始估计 \\\\ x_{k+1} &= (1-\\omega)x_k + \\omega D^{-1}(b-Lx_{k+1}-Ux_k), k=0,1,2,...... \\end{aligned}``
 
 # Arguments
 - `A`: 表示系数矩阵A

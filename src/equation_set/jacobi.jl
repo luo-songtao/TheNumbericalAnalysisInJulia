@@ -15,16 +15,11 @@
 - `L`表示`A`的下三角矩阵(主对角线以下的元素)
 - `U`表示`A`的上三角矩阵(主对角线以上的元素)
 
-```math
-Ax = b \\Longleftrightarrow (L+D+U)x = b \\\\
-Dx = b-(L+U)x \\\\
-x = D^{-1}(b-(L+U)x)
-```
+
+``\\begin{aligned} Ax &= b \\Longleftrightarrow (L+D+U)x = b \\\\ Dx &= b-(L+U)x \\\\ x &= D^{-1}(b-(L+U)x) \\end{aligned}``
+
 ## 雅可比方法迭代公式：
-``x_0 =`` 初始估计
-```math
-x_{k+1} = D^{-1}(b-(L+U)x_k), k=0,1,2,......
-```
+``\\begin{aligned} x_0 &= 初始估计 \\\\ x_{k+1} &= D^{-1}(b-(L+U)x_k), k=0,1,2,...... \\end{aligned}``
 
 # Arguments
 - `A`: 表示系数矩阵A
