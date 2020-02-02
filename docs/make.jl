@@ -15,20 +15,22 @@ makedocs(
         asset("assets/logo.png", class=:ico, islocal=true)
     ]),
     pages = [
-        "求解一元方程"=> [
+        "Home"=>"index.md",
+        "求解一元方程" => [
+            "Home" => "numberical_analysis/equation_solving.md",
             "numberical_analysis/equation_solving/bisect.md",
             "numberical_analysis/equation_solving/fixed_point_iteration.md",
             "numberical_analysis/equation_solving/newton_method.md",
             "numberical_analysis/equation_solving/secant.md"
         ],
         "求解n元方程组" => [
+            "Home" => "numberical_analysis/equation_set.md",
             "numberical_analysis/equation_set/gauss_elimination.md",
             "numberical_analysis/equation_set/lu_factorization.md",
             "numberical_analysis/equation_set/iteration_method.md",
             "numberical_analysis/equation_set/methods_about_SPD_matrix.md"
         ],
-        "多项式求值" => "numberical_analysis/polyomial.md",
-        "API"=>"index.md"
+        "多项式求值" => "numberical_analysis/polyomial.md"
     ]
 )
 
