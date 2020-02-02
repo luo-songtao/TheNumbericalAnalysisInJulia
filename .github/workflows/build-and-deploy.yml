@@ -27,4 +27,6 @@ jobs:
       run: |
         julia -e 'import Pkg;Pkg.add("Documenter")'
         cd docs
+        git config user.email "$GITHUB_EMAIL"
+        git config user.name "$GITHUB_USERNAME"
         julia --color=yes make.jl
