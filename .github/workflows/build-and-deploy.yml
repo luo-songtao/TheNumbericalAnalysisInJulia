@@ -18,15 +18,8 @@ jobs:
         arch: x64
     - name: build-and-deploy
       env: 
-        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY:  ${{ secrets.GITHUB_REPOSITORY }} 
-        GITHUB_SHA:  ${{ secrets.GITHUB_SHA }} 
-        GITHUB_USERNAME: luo-songtao
-        GITHUB_EMAIL: ryomawithlst@gmail.com
       run: |
         julia -e 'import Pkg;Pkg.add("Documenter")'
         cd docs
-        git config user.email "$GITHUB_EMAIL"
-        git config user.name "$GITHUB_USERNAME"
         julia --color=yes make.jl
