@@ -35,4 +35,5 @@ jobs:
         git config user.name "$GITHUB_USERNAME"
         git add docs/dist
         git commit -m "update by $GITHUB_SHA"
+        git subtree pull --prefix=docs/dist "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
         git subtree push --prefix=docs/dist "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
