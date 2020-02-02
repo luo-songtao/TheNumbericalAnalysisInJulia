@@ -21,4 +21,10 @@ export successive_over_relaxation
 include("equation_set/cholesky_decomposition.jl")
 export cholesky_decomposition
 
+include("equation_set/conjugate_gradient.jl")
+export conjugate_gradient
+
+include("equation_set/conjugate_gradient_with_pre_condition.jl")
+export conjugate_gradient_with_pre_condition
+
 end
