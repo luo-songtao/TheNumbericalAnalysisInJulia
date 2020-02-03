@@ -28,7 +28,8 @@ makedocs(
             "numberical_analysis/equation_set/gauss_elimination.md",
             "numberical_analysis/equation_set/lu_factorization.md",
             "numberical_analysis/equation_set/iteration_method.md",
-            "numberical_analysis/equation_set/methods_about_SPD_matrix.md"
+            "numberical_analysis/equation_set/methods_about_SPD_matrix.md",
+            "numberical_analysis/equation_set/nonlinear_equation_set.md"
         ],
         "多项式求值" => "numberical_analysis/polyomial.md"
     ]

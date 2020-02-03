@@ -30,4 +30,13 @@ export conjugate_gradient_with_pre_condition
 include("equation_set/ssor.jl")
 export ssor
 
+include("equation_set/multiple_newton_method.jl")
+export mult_newton_method
+
+include("equation_set/broyden.jl")
+export broyden
+
+include("equation_set/broyden2.jl")
+export broyden2
+
 end

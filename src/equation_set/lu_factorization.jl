@@ -1,5 +1,3 @@
-using LinearAlgebra
-
 """
 # LU分解--高斯消去法的矩阵形式
     lu_factorization(A, b, n)

@@ -9,7 +9,7 @@ include("jacobi.jl")
 include("sor.jl")
 include("ssor.jl")
 
-n = 6
+n = 10000
 A = zeros(n,n)
 A[1,1] = 3
 for i = 2:n
@@ -33,17 +33,17 @@ end
 b[1] = 2.5
 b[n] = 2.5
 
-println(A)
-println(b)
+# println(A)
+# println(b)
 
 x = @timev jacobi(A, b, zeros(n), n, n)
-println(x)
+println(x[1])
 
-x = @timev sor(A, b, zeros(n), n, n, 1.1)
-println(x)
+# x = @timev sor(A, b, zeros(n), n, n, 1.1)
+# println(x)
 
-x = @timev conjugate_gradient(A, b, zeros(n), n)
-println(x)
+# x = @timev conjugate_gradient(A, b, zeros(n), n)
+# println(x)
 
 x = @timev ssor(A, b, zeros(n), n, 1)
-println(x)
+println(x[1])

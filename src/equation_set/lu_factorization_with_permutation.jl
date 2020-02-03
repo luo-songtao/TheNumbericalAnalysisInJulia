@@ -1,5 +1,3 @@
-using LinearAlgebra
-
 """
 # PA=LU分解
     lu_factorization_with_permutation(A, b, n)
