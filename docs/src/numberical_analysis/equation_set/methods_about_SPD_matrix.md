@@ -25,3 +25,9 @@ Filter = f -> nameof(f) == :conjugate_gradient
 Modules = [EquationSet]
 Filter = f -> nameof(f) == :conjugate_gradient_with_pre_condition 
 ```
+
+## 使用对称连续过松弛(SSOR)预条件子的共轭梯度法
+```@autodocs
+Modules = [EquationSet]
+Filter = f -> nameof(f) == :ssor 
+```

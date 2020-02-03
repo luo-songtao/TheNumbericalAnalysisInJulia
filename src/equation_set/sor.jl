@@ -1,6 +1,6 @@
 """
 # 连续过松弛(SOR)
-    successive_over_relaxation(A, b, x_0, n, k)
+    sor(A, b, x_0, n, k, ω=1.25)
 
 连续过松弛方法使用高斯-赛德尔方法的求解方向，并使用过松弛以加快收敛速度。
 
@@ -19,6 +19,7 @@
 - `x_0`: 初始估计(向量)
 - `n`: 方程数
 - `k`: 迭代次数
+- `ω`: 松弛参数(default=1.25)
 
 # Example
 ```jldoctest
@@ -37,20 +38,20 @@ julia> x_0 = Float64[0;0;0]
  0.0
  0.0
  0.0
-julia> x = successive_over_relaxation(A, b, x_0, 3, 50, 1.25)    # 该例中约30步收敛
+julia> x = sor(A, b, x_0, 3, 50, 1.25)    # 该例中约30步收敛
 3-element Array{Float64,1}:
   2.0
  -1.0
   1.0
 ```
 """
-function successive_over_relaxation(A, b, x_0, n, k, w=1.25)
+function sor(A, b, x_0, n, k, ω=1.25)
     x_k = x_0
     for i = 1:k
         for j = 1:n
             L_mult = reshape(A[j, 1:j-1], (1, j-1)) * reshape(x_k[1:j-1], (j-1, 1))
             U_mult = reshape(A[j, j+1:n], (1, n-j)) * reshape(x_k[j+1:n], (n-j, 1))
-            x_k[j] = (1-w)x_k[j] + w*((1/A[j,j]) * (b[j] - L_mult[1] - U_mult[1]))
+            x_k[j] = (1-ω)x_k[j] + ω*((1/A[j,j]) * (b[j] - L_mult[1] - U_mult[1]))
         end
     end
     return x_k
