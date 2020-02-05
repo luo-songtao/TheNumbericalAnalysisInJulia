@@ -19,7 +19,7 @@
 
 以及：
 
-``\\begin{aligned} f[x_k] &= f(x_k) \\\\ f[x_k x_{k+1}] &= \\frac {f[x_{k+1}]-f[x_k]}{x_{k+1}- x_{k}} \\\\ f[x_k x_{k+1} ··· f_{k+j}] &= \\frac {f[x_{k+1} ··· x_{k+j}]-f[x_k ··· x_{k+j-1}]}{x_{k+j}- x_{k}} \\end{aligned}``
+``\\begin{aligned} f[x_k] &= f(x_k) \\\\ f[x_k x_{k+1}] &= \\frac {f[x_{k+1}]-f[x_k]}{x_{k+1}- x_{k}} \\\\ f[x_k x_{k+1} ··· x_{k+j}] &= \\frac {f[x_{k+1} ··· x_{k+j}]-f[x_k ··· x_{k+j-1}]}{x_{k+j}- x_{k}} \\end{aligned}``
 
 # Example
 ```jldoctest
@@ -35,6 +35,16 @@ julia> newton_difference_quotient(x,y)
  0.5
  0.5
 ```
+
+```julia
+using Plots
+x_0 = 0:0.01:4
+y_0 = horner_rule(2, c, x_0, x)
+pyplot()
+p = scatter(x,y)
+plot!(p, x_0,y_0)
+```
+![](../img/newton_difference_quotient.png)
 
 """
 function newton_difference_quotient(x, y)
@@ -54,3 +64,10 @@ function newton_difference_quotient(x, y)
     # 最后第一行将分别是f[x_1]、f[x_1 x_2]、···、f[x_1 ··· x_n]的值
     return coefficients[1, :]
 end
+
+x = [0 2 3]
+y = [1 2 4]
+
+c = newton_difference_quotient(x,y)
+
+
