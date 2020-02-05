@@ -1,0 +1,6 @@
+module InterpolationPolynomial
+
+include("interpolation_polynomial/newton_difference_quotient.jl")
+export newton_difference_quotient
+
+end

@@ -3,18 +3,15 @@
     fixed_point_iteration(g, x_0, k)
 不动点迭代法求解函数值
 
-```math
-f(x)=g(x)-x\\\\
-x_0 = 初始估计\\\\
-x_{i+1} = g(x_i),(i=0,1,2,3,...)
-```
+## 不动点迭代法迭代公式：
+``\\begin{aligned} f(x)&=g(x)-x \\\\ x_0 &= 初始估计\\\\ x_{i+1} &= g(x_i),(i=0,1,2,3,...) \\end{aligned}``
 
 # Arguments
 - `g`: `g(x)`函数
 - `x_0`: 初始估计值
 - `k`: 迭代次数
 
-# Usage
+# Example
 ```jldoctest
 julia> fixed_point_iteration(x-> cos(x), 0, 100)
 0.7390851332151607

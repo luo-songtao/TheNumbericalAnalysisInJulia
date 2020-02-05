@@ -1,6 +1,6 @@
 """
 # 高斯-赛德尔方法
-    gauss_seidel(a, b, x_0, n, k)
+    gauss_seidel(A, b, x_0, n, k)
 
 高斯-赛德尔方法和雅可比方法非常相似，唯一的差异的在于，高斯-赛德尔方法在每一步中都会用到最近更新的未知变量的值。
 
@@ -11,23 +11,19 @@
 - `L`表示`A`的下三角矩阵(主对角线以下的元素)
 - `U`表示`A`的上三角矩阵(主对角线以上的元素)
 
-```math
-Ax = b \\Longleftrightarrow (L+D)x_{k+1} = b - Ux_k \\\\
-```
+``Ax &= b \\Longleftrightarrow (L+D)x_{k+1} = b - Ux_k \\\\``
+
 ## 高斯-赛德尔方法迭代公式：
-``x_0 =`` 初始估计
-```math
-x_{k+1} = D^{-1}(b-Lx_{k+1}-Ux_k), k=0,1,2,......
-```
+``\\begin{aligned} x_0 &= 初始估计 \\\\ x_{k+1} &= D^{-1}(b-Lx_{k+1}-Ux_k), k=0,1,2,...... \\end{aligned}``
 
 # Arguments
-- `a`: 表示系数矩阵A
+- `A`: 表示系数矩阵A
 - `b`: 表示常数项b
 - `x_0`: 初始估计(向量)
 - `n`: 方程数
 - `k`: 迭代次数
 
-# Usage
+# Example
 ```jldoctest
 julia> A = Float64[3 1 -1; 2 4 1; -1 2 5]
 3×3 Array{Float64,2}:
@@ -51,13 +47,13 @@ julia> x = gauss_seidel(A, b, x_0, 3, 50)    # 该例中约50步收敛
   1.0
 ```
 """
-function gauss_seidel(a, b, x_0, n, k)
+function gauss_seidel(A, b, x_0, n, k)
     x_k = x_0
     for i = 1:k
         for j = 1:n
-            L_mult = reshape(a[j, 1:j-1], (1, j-1)) * reshape(x_k[1:j-1], (j-1, 1))
-            U_mult = reshape(a[j, j+1:n], (1, n-j)) * reshape(x_k[j+1:n], (n-j, 1))
-            x_k[j] = (1/a[j,j]) * (b[j] - L_mult[1] - U_mult[1])
+            L_mult = reshape(A[j, 1:j-1], (1, j-1)) * reshape(x_k[1:j-1], (j-1, 1))
+            U_mult = reshape(A[j, j+1:n], (1, n-j)) * reshape(x_k[j+1:n], (n-j, 1))
+            x_k[j] = (1/A[j,j]) * (b[j] - L_mult[1] - U_mult[1])
         end
     end
     return x_k

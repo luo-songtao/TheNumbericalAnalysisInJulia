@@ -4,12 +4,19 @@
 CurrentModule = Polyomial
 ```
 
-## 索引
+## Content
+```@contents
+Pages = map(file -> joinpath("equation_solving", file), readdir("equation_solving"))
+Depth = 3
+```
+
+## Index
 ```@index
 Pages   = ["polyomial.md"]
 ```
 
-## API文档
+#### 霍纳方法
 ```@autodocs
 Modules = [Polyomial]
+Filter = f -> nameof(f) == :horner_rule
 ```

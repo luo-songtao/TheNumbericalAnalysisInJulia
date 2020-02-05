@@ -1,15 +1,16 @@
-# 方程组
+# 求解n元方程
 
 ```@meta
 CurrentModule = EquationSet
 ```
 
-## 索引
-```@index
-Pages   = ["equation_set.md"]
+## Content
+```@contents
+Pages = map(file -> joinpath("equation_set", file), readdir("equation_set"))
+Depth = 3
 ```
 
-## API文档
-```@autodocs
-Modules = [EquationSet]
+## Index
+```@index
+Pages   = map(file -> joinpath("equation_set", file), readdir("equation_set"))
 ```

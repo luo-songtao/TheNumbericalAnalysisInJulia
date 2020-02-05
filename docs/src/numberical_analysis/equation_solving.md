@@ -1,15 +1,16 @@
-# 求解方程
+# 求解一元方程
 
 ```@meta
 CurrentModule = EquationSolving
 ```
 
-## 索引
-```@index
-Pages   = ["equation_solving.md"]
+## Content
+```@contents
+Pages = map(file -> joinpath("equation_solving", file), readdir("equation_solving"))
+Depth = 3
 ```
 
-## API文档
-```@autodocs
-Modules = [EquationSolving]
+## Index
+```@index
+Pages   = map(file -> joinpath("equation_solving", file), readdir("equation_solving"))
 ```
