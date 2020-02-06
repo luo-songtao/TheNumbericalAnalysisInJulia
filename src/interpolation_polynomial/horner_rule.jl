@@ -23,9 +23,7 @@ julia> horner_rule(4, [-1 5 -3 3 2], 1/2, [0 0 0 0])
 function horner_rule(degree, constants, x, base_points)
     y = constants[degree+1]
     for i = degree:-1:1
-        y = y.*(x-base_points[i])+constants[i]
+        y = y.*(x.-base_points[i]).+constants[i]
     end
     y
 end
-
-nest = horner_rule

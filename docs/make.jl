@@ -1,12 +1,11 @@
 push!(LOAD_PATH,"../src/")
-using Documenter, EquationSolving, EquationSet, InterpolationPolynomial, Polyomial
+using Documenter, EquationSolving, EquationSet, InterpolationPolynomial
 
-modules = [EquationSolving, EquationSet, InterpolationPolynomial, Polyomial]
+modules = [EquationSolving, EquationSet, InterpolationPolynomial]
 
 DocMeta.setdocmeta!(EquationSolving, :DocTestSetup, :(using EquationSolving); recursive=true)
 DocMeta.setdocmeta!(EquationSet, :DocTestSetup, :(using EquationSet); recursive=true)
-DocMeta.setdocmeta!(InterpolationPolynomial, :DocTestSetup, :(using InterpolationPolynomial); recursive=true)
-DocMeta.setdocmeta!(Polyomial, :DocTestSetup, :(using Polyomial); recursive=true)
+DocMeta.setdocmeta!(InterpolationPolynomial, :DocTestSetup, :(using InterpolationPolynomial;using EquationSet); recursive=true)
 
 makedocs(
     modules = modules,
@@ -34,9 +33,12 @@ makedocs(
         ],
         "插值多项式" => [
             "目录" => "numberical_analysis/interpolation_polynomial.md",
-            "numberical_analysis/interpolation_polynomial/newton_difference_quotient.md"
-        ],
-        "多项式求值" => "numberical_analysis/polyomial.md"
+            "numberical_analysis/interpolation_polynomial/newton_difference_quotient.md",
+            "numberical_analysis/interpolation_polynomial/error_and_runge_phenomenon.md",
+            "numberical_analysis/interpolation_polynomial/chebyshev_interpolation.md", 
+            "numberical_analysis/interpolation_polynomial/cubic_spline.md",
+            "numberical_analysis/interpolation_polynomial/bezier_curve.md",
+        ]
     ]
 )
 
