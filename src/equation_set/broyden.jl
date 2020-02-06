@@ -54,4 +54,5 @@ function broyden(F, A_0, x_0, k)
     return x_k
 end
 
-include("naive_gauss_elimination.jl")
+push!(LOAD_PATH,"../")
+using EquationSet

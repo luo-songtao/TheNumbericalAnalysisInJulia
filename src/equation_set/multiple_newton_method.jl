@@ -50,4 +50,5 @@ function mult_newton_method(F, DF, x_0, k)
     return x_k
 end
 
-include("naive_gauss_elimination.jl")
+push!(LOAD_PATH,"../")
+using EquationSet

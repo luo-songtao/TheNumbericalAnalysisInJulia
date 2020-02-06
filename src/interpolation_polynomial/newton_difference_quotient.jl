@@ -1,7 +1,7 @@
 """
-# 牛顿差商
-    newton_difference_quotient
-牛顿差商给出插值多项式的一种简单形式。给定``n``个数据点，所得到的结果多项式之多``n-1``阶
+# 牛顿差商方法
+    newton_difference_quotient(x, y)
+牛顿差商给出插值多项式的一种简单形式。给定``n``个数据点，所得到的结果多项式至多``n-1``阶
 
 ## 牛顿差商公式定义：
 
@@ -37,15 +37,34 @@ julia> newton_difference_quotient(x,y)
 ```
 
 ```julia
-using Plots
-x_0 = 0:0.01:4
-y_0 = horner_rule(2, c, x_0, x)
-pyplot()
-p = scatter(x,y)
-plot!(p, x_0,y_0)
-```
-![](../img/newton_difference_quotient.png)
+x_0 = [0 2 3]
+y_0 = [1 2 4]
+c = newton_difference_quotient(x_0, y_0)
 
+x = 0:0.01:4
+y = horner_rule(2, c, x, x_0)
+
+p = scatter(x_0, y_0, label="base point")
+plot!(p, x, y, label="2 degree curve")
+```
+![](../img/newtdd1.png)
+
+## 使用牛顿差商在``[-\\pi/2, \\pi/2]``近似拟合sin函数
+
+取``x=[-\\pi/2 -\\pi/4 0 \\pi/4 \\pi/2]``的插值
+
+```julia
+x_0 = [-pi/2 -pi/4 0 pi/4 pi/2]
+y_0 = sin.(x_0)
+c = newton_difference_quotient(x_0,y_0)
+
+x = -pi:0.01:pi
+y = horner_rule(length(x_0)-1, c, x, x_0)
+
+p = plot(x, [sin.(x) y], label=["sin" "near curve"])
+plot!(p, x_0, y_0, shape=:circle, label="base point")
+```
+![](../img/newtdd2.png)
 """
 function newton_difference_quotient(x, y)
     n = length(x)
@@ -65,9 +84,30 @@ function newton_difference_quotient(x, y)
     return coefficients[1, :]
 end
 
-x = [0 2 3]
-y = [1 2 4]
+"""
+include("horner_rule.jl")
+using Plots
+pyplot()
 
-c = newton_difference_quotient(x,y)
+x_0 = [0 2 3]
+y_0 = [1 2 4]
+c = newton_difference_quotient(x_0, y_0)
 
+x = 0:0.01:4
+y = horner_rule(2, c, x, x_0)
 
+p = scatter(x_0, y_0, label="base point")
+savefig(plot!(p, x, y, label="2 degree curve"),"a1.png")
+"""
+
+"""
+x_0 = [-pi/2 -pi/4 0 pi/4 pi/2]
+y_0 = sin.(x_0)
+c = newton_difference_quotient(x_0,y_0)
+
+x = -pi:0.01:pi
+y = horner_rule(length(x_0)-1, c, x, x_0)
+
+p = plot(x, [sin.(x) y], label=["sin" "near curve"])
+savefig(plot!(p, x_0, y_0, shape=:circle, label="base point"), "a2.png")
+"""
