@@ -2,7 +2,7 @@
 
 ## Content
 ```@contents
-Pages = map(file -> joinpath("numberical_analysis", file), readdir("numberical_analysis"))
+Pages = ["numberical_analysis/equation_solving.md", "numberical_analysis/equation_set.md", "numberical_analysis/interpolation_polynomial.md"]
 Depth = 3
 ```
 
