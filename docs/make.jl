@@ -1,11 +1,12 @@
 push!(LOAD_PATH,"../src/")
-using Documenter, EquationSolving, EquationSet, InterpolationPolynomial
+using Documenter, EquationSolving, EquationSet, InterpolationPolynomial, LeastSquare
 
-modules = [EquationSolving, EquationSet, InterpolationPolynomial]
+modules = [EquationSolving, EquationSet, InterpolationPolynomial, LeastSquare]
 
 DocMeta.setdocmeta!(EquationSolving, :DocTestSetup, :(using EquationSolving); recursive=true)
 DocMeta.setdocmeta!(EquationSet, :DocTestSetup, :(using EquationSet); recursive=true)
 DocMeta.setdocmeta!(InterpolationPolynomial, :DocTestSetup, :(using InterpolationPolynomial;using EquationSet); recursive=true)
+DocMeta.setdocmeta!(LeastSquare, :DocTestSetup, :(using LeastSquare;); recursive=true)
 
 makedocs(
     modules = modules,
@@ -38,6 +39,13 @@ makedocs(
             "numberical_analysis/interpolation_polynomial/chebyshev_interpolation.md", 
             "numberical_analysis/interpolation_polynomial/cubic_spline.md",
             "numberical_analysis/interpolation_polynomial/bezier_curve.md",
+        ],
+        "最小二乘" => [
+            "目录" => "numberical_analysis/least_square.md",
+            "numberical_analysis/least_square/normal_equation.md",
+            "numberical_analysis/least_square/gram_schmidt_orthogon.md",
+            "numberical_analysis/least_square/least_square_and_qr.md",
+            "numberical_analysis/least_square/householder_reflector.md",
         ]
     ]
 )

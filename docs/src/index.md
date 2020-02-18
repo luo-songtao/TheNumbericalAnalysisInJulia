@@ -2,7 +2,12 @@
 
 ## Content
 ```@contents
-Pages = ["numberical_analysis/equation_solving.md", "numberical_analysis/equation_set.md", "numberical_analysis/interpolation_polynomial.md"]
+Pages = [
+    "numberical_analysis/equation_solving.md", 
+    "numberical_analysis/equation_set.md", 
+    "numberical_analysis/interpolation_polynomial.md",
+    "numberical_analysis/least_square.md",
+]
 Depth = 3
 ```
 
