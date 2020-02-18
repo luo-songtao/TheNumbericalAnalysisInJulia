@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>最小二乘与法线方程 · 数值分析(Julia语言描述)</title><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../../assets/documenter.js"></script><script src="../../../siteinfo.js"></script><script src="../../../../versions.js"></script><link href="../../../assets/logo.png" rel="icon" type="image/x-icon"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../../"><img src="../../../assets/logo.png" alt="数值分析(Julia语言描述) logo"/></a><div class="docs-package-name"><span class="docs-autofit">数值分析(Julia语言描述)</span></div><form class="docs-search" action="../../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../../">Home</a></li><li><span class="tocitem">求解一元方程</span><ul><li><a class="tocitem" href="../../equation_solving/">目录</a></li><li><a class="tocitem" href="../../equation_solving/bisect/">二分法</a></li><li><a class="tocitem" href="../../equation_solving/fixed_point_iteration/">不动点迭代法</a></li><li><a class="tocitem" href="../../equation_solving/newton_method/">牛顿方法</a></li><li><a class="tocitem" href="../../equation_solving/secant/">割线方法</a></li></ul></li><li><span class="tocitem">求解n元方程组</span><ul><li><a class="tocitem" href="../../equation_set/">目录</a></li><li><a class="tocitem" href="../../equation_set/gauss_elimination/">高斯消去法</a></li><li><a class="tocitem" href="../../equation_set/lu_factorization/">LU分解</a></li><li><a class="tocitem" href="../../equation_set/iteration_method/">迭代方法</a></li><li><a class="tocitem" href="../../equation_set/methods_about_SPD_matrix/">用于对称正定矩阵的方法</a></li><li><a class="tocitem" href="../../equation_set/nonlinear_equation_set/">非线性方程组</a></li></ul></li><li><span class="tocitem">插值多项式</span><ul><li><a class="tocitem" href="../../interpolation_polynomial/">目录</a></li><li><a class="tocitem" href="../../interpolation_polynomial/newton_difference_quotient/">牛顿差商</a></li><li><a class="tocitem" href="../../interpolation_polynomial/error_and_runge_phenomenon/">插值误差和龙格现象</a></li><li><a class="tocitem" href="../../interpolation_polynomial/chebyshev_interpolation/">切比雪夫插值</a></li><li><a class="tocitem" href="../../interpolation_polynomial/cubic_spline/">三次样条插值</a></li><li><a class="tocitem" href="../../interpolation_polynomial/bezier_curve/">贝塞尔曲线</a></li></ul></li><li><span class="tocitem">最小二乘</span><ul><li><a class="tocitem" href="../">目录</a></li><li class="is-active"><a class="tocitem" href>最小二乘与法线方程</a><ul class="internal"><li><a class="tocitem" href="#法线方程-1"><span>法线方程</span></a></li><li><a class="tocitem" href="#最小二乘数据拟合-1"><span>最小二乘数据拟合</span></a></li></ul></li><li><a class="tocitem" href="../gram_schmidt_orthogon/">格拉姆-施密特正交</a></li><li><a class="tocitem" href="../least_square_and_qr/">最小二乘与QR分解</a></li><li><a class="tocitem" href="../householder_reflector/">豪斯霍尔德反射方法</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">最小二乘</a></li><li class="is-active"><a href>最小二乘与法线方程</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>最小二乘与法线方程</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/luo-songtao/TheNumbericalAnalysisInJulia/blob/master/docs/src/numberical_analysis/least_square/normal_equation.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="最小二乘与法线方程-1"><a class="docs-heading-anchor" href="#最小二乘与法线方程-1">最小二乘与法线方程</a><a class="docs-heading-anchor-permalink" href="#最小二乘与法线方程-1" title="Permalink"></a></h1><ul><li><a href="#LeastSquare.fit_modeling_by_normal_equation-Tuple{Any,Any,Any}"><code>LeastSquare.fit_modeling_by_normal_equation</code></a></li><li><a href="#LeastSquare.normal_equation-Tuple{Any,Any}"><code>LeastSquare.normal_equation</code></a></li></ul><h2 id="法线方程-1"><a class="docs-heading-anchor" href="#法线方程-1">法线方程</a><a class="docs-heading-anchor-permalink" href="#法线方程-1" title="Permalink"></a></h2><article class="docstring"><header><a class="docstring-binding" id="LeastSquare.normal_equation-Tuple{Any,Any}" href="#LeastSquare.normal_equation-Tuple{Any,Any}"><code>LeastSquare.normal_equation</code></a> — <span class="docstring-category">Method</span></header><section><div><p><strong>最小二乘与法线方程</strong></p><p><strong>最小二乘</strong></p><ul><li>求解方程时，有可能方程的个数超过未知变量个数或方程本身不存在解时，可以通过<strong>最小二乘近似</strong>找到第二可能好的解</li><li>在寻找多项式，并精确拟合数据点时，如果有大量的数据点，或者采集的数据点具有一定误差，使用高阶多项式精确拟合一般不是一个好方法。此时使用简单模型<strong>近似拟合数</strong>据是一种更合理的方式</li></ul><p>在方程无解的情况下，可以通过一种直接方法找到最接近的<span>$x$</span>，这个特殊的<span>$x$</span>称为<strong>最小二乘解</strong>，我们这里把它记为: <span>$\overline{x}$</span></p><p>也就是说<span>$A\overline{x} \neq b$</span>但最接近<span>$b$</span>，等价于：<span>$b-A\overline{x}$</span>与平面<span>$\lbrace Ax|x\in R^n \rbrace$</span></p><p><strong>法线方程</strong></p><p>最小二乘基于<strong>正交</strong>。从平面外一点到一个平面的最短距离，有一个到平面的线段表示。<strong>法线方程</strong>可以确定该线段，它表示着最小二乘的误差。</p><p>已知：<span>$(b-A\overline{x})\perp \lbrace Ax|x\in R^n \rbrace$</span></p><p>将垂直性表示为矩阵的乘法，则可以发现对于<span>$R^n$</span>上的所有<span>$x$</span>:</p><p><span>$\qquad \begin{aligned} (Ax)^T(b-A\overline{x}) &amp;= 0 \\ x^TA^T(b-A\overline{x}) &amp;= 0 \end{aligned}$</span></p><p>这也就意味着<span>$n$</span>维向量<span>$A^T(b-A\overline{x})$</span>与中的其他维向量垂直，并且好包括自身，当且仅当:</p><div>\[A^T(b-A\overline{x}) = 0\]</div><p>即：</p><div>\[A^TA\overline{x} = A^Tb\]</div><p>这个方程组被称为<strong>法线方程</strong>，它的解<span>$\overline{x}$</span>是方程组<span>$Ax=b$</span>的最小二乘解。它可以最小化余项<span>$r=b-Ax$</span>的欧式长度。</p><p>如果余项是0向量，那么意味着精确求解了<span>$Ax=b$</span>。否则余项向量的欧式长度是后向误差，它度量了<span>$\overline{x}$</span>到解的距离</p><p><span>$\qquad \begin{aligned} \Vert r \Vert_2 &amp;= \sqrt{r^2_1 + ··· + r^2_m}，2范数 \\ SE &amp;= r^2_1 + ··· + r^2_m，平方误差 \\ RMSE &amp;= \sqrt{\frac{SE}{m}} = \sqrt{r^2_1 + ··· + r^2_m}，均方根误差 \end{aligned}$</span></p><p><strong>使用法线方程求解最小二乘问题</strong></p><pre><code class="language-julia">A = Float64[1 -4; 2 3; 2 2]
+b = Float64[-3;15;9]
+x = round.(normal_equation(A, b), digits=2)
+# [3.8; 1.8]
+r = round.(b-A*x, digits=2)
+# [0.4; 2.0; -2.2]
+using LinearAlgebra
+norm(r)
+# 3.0</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/luo-songtao/TheNumbericalAnalysisInJulia/blob/9a52b0a4ae4ce5f47f459e13dfe060e8cbafc00a/src/least_square/normal_equation.jl#L1-L50">source</a></section></article><h2 id="最小二乘数据拟合-1"><a class="docs-heading-anchor" href="#最小二乘数据拟合-1">最小二乘数据拟合</a><a class="docs-heading-anchor-permalink" href="#最小二乘数据拟合-1" title="Permalink"></a></h2><article class="docstring"><header><a class="docstring-binding" id="LeastSquare.fit_modeling_by_normal_equation-Tuple{Any,Any,Any}" href="#LeastSquare.fit_modeling_by_normal_equation-Tuple{Any,Any,Any}"><code>LeastSquare.fit_modeling_by_normal_equation</code></a> — <span class="docstring-category">Method</span></header><section><div><p><strong>最小二乘线性建模</strong></p><p>最小二乘建模：使用最小二乘对数据进行模型拟合</p><p>最小二乘核心思想：在数据点上通过平方误差度量拟合的余项，并找出模型的参数使得该误差最小</p><p><strong>法线方程拟合数据</strong></p><p><strong>拟合数据点：(-1, 1)、(0, 0)、(1, 0)、(2, -2)</strong></p><pre><code class="language-julia-repl">julia&gt; x = [-1;0;1;2]
+4-element Array{Int64,1}:
+ -1
+  0
+  1
+  2
+julia&gt; y = [1;0;0;-2]
+4-element Array{Int64,1}:
+  1
+  0
+  0
+ -2
+julia&gt; fit_modeling_by_normal_equation([x.^0 x], x, y)    # 最优直线y = 0.2 - 0.9x
+RMSE: 0.4183
+2-element Array{Float64,1}:
+  0.2
+ -0.9
+julia&gt; fit_modeling_by_normal_equation([x.^0 x x.^2], x, y)    # 最优抛物线y=0.45 - 0.65x - 0.25x^2
+RMSE: 0.3354
+3-element Array{Float64,1}:
+  0.45
+ -0.65
+ -0.25</code></pre><p><strong>周期数据拟合</strong></p><pre><code class="language-julia-repl">julia&gt; t = 0:1/8:7/8
+0.0:0.125:0.875
+
+julia&gt; y = [-2.2; -2.8; -6.1; -3.9; 0.0;1.1;-0.6;-1.1]
+8-element Array{Float64,1}:
+ -2.2
+ -2.8
+ -6.1
+ -3.9
+  0.0
+  1.1
+ -0.6
+ -1.1
+
+julia&gt; fit_modeling_by_normal_equation([t.^0 cos.(t.*2pi) sin.(t.*2pi)], t, y)    # 模型： y = c1 + c2*cos2πt + c3*sin2πt
+RMSE: 1.0631
+3-element Array{Float64,1}:
+ -1.95  
+ -0.7445
+ -2.5594
+
+julia&gt; fit_modeling_by_normal_equation([t.^0 cos.(t.*2pi) sin.(t.*2pi) cos.(t.*4pi) sin.(t.*4pi)], t, y)    # 模型： y = c1 + c2*cos2πt + c3*sin2πt + c4*cos4πt + c5*sin4πt
+RMSE: 0.3962
+5-element Array{Float64,1}:
+ -1.95  
+ -0.7445
+ -2.5594
+  1.125 
+  0.825</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/luo-songtao/TheNumbericalAnalysisInJulia/blob/9a52b0a4ae4ce5f47f459e13dfe060e8cbafc00a/src/least_square/normal_equation.jl#L62-L130">source</a></section></article></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« 目录</a><a class="docs-footer-nextpage" href="../gram_schmidt_orthogon/">格拉姆-施密特正交 »</a></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Tuesday 18 February 2020 11:18">Tuesday 18 February 2020</span>. Using Julia version 1.3.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
