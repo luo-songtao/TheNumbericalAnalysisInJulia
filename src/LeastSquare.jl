@@ -12,4 +12,13 @@ export incomplete_qr,  complete_qr, least_square_by_complete_qr
 include("least_square/householder_reflector.jl")
 export householder_reflector, qr_by_householder_reflector
 
+include("least_square/gmres.jl")
+export gmres, pre_con_gmres
+
+include("least_square/guass_newton.jl")
+export guass_newton, test_guass_newton
+
+include("least_square/levenberg_marquardt.jl")
+export levenberg_marquardt, test_levenberg_marquardt
+
 end

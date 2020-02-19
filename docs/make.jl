@@ -46,6 +46,8 @@ makedocs(
             "numberical_analysis/least_square/gram_schmidt_orthogon.md",
             "numberical_analysis/least_square/least_square_and_qr.md",
             "numberical_analysis/least_square/householder_reflector.md",
+            "numberical_analysis/least_square/gmres.md",
+            "numberical_analysis/least_square/nolinear_least_square.md",
         ]
     ]
 )

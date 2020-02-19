@@ -102,7 +102,7 @@ function complete_qr(A, m, n)
         r[j,j] = sqrt(sum(y.^2))
         q[:, j] = y / r[j,j]
     end
-
+    
     for j = n+1:m
         y = A[:, j]
         for i = 1:j-1
