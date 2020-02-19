@@ -1,2 +1,2 @@
-# NumbericalAnalysisInJulia
-Numberical Analysis In Julia By My Hand
+# NumericalAnalysisInJulia
+Numerical Analysis In Julia
