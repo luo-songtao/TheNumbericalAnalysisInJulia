@@ -16,7 +16,7 @@ makedocs(
         asset("assets/logo.png", class=:ico, islocal=true)
     ]),
     pages = [
-        "Home"=>"index.md",
+        "总目录"=>"index.md",
         "求解一元方程" => [
             "目录" => "numerical_analysis/equation_solving.md",
             "numerical_analysis/equation_solving/bisect.md",
