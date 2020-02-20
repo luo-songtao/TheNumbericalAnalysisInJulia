@@ -48,6 +48,15 @@ Pages = [
 Depth = 3
 ```
 
+## 数值微分与积分
+```@contents
+Pages = [
+    "numerical_analysis/numerical_calculus/numerical_differential.md",
+    "numerical_analysis/numerical_calculus/numerical_integral.md",
+]
+Depth = 3
+```
+
 ## 模块索引
 ```@index
 ```

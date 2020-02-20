@@ -11,7 +11,7 @@ Pages   = ["nolinear_least_square.md"]
 ## 高斯牛顿法
 ```@autodocs
 Modules = [LeastSquare]
-Filter = f -> nameof(f) == :guass_newton
+Filter = f -> nameof(f) == :gauss_newton
 ```
 
 ## Levenberg-Marquardt方法
