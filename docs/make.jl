@@ -1,12 +1,15 @@
 push!(LOAD_PATH,"../src/")
-using Documenter, EquationSolving, EquationSet, InterpolationPolynomial, LeastSquare
+using Documenter, EquationSolving, EquationSet
+using InterpolationPolynomial, LeastSquare, NumericalCalculus
 
-modules = [EquationSolving, EquationSet, InterpolationPolynomial, LeastSquare]
+modules = [EquationSolving, EquationSet, InterpolationPolynomial, 
+LeastSquare, NumericalCalculus]
 
 DocMeta.setdocmeta!(EquationSolving, :DocTestSetup, :(using EquationSolving); recursive=true)
 DocMeta.setdocmeta!(EquationSet, :DocTestSetup, :(using EquationSet); recursive=true)
 DocMeta.setdocmeta!(InterpolationPolynomial, :DocTestSetup, :(using InterpolationPolynomial;using EquationSet); recursive=true)
 DocMeta.setdocmeta!(LeastSquare, :DocTestSetup, :(using LeastSquare;); recursive=true)
+DocMeta.setdocmeta!(NumericalCalculus, :DocTestSetup, :(using NumericalCalculus;); recursive=true)
 
 makedocs(
     modules = modules,
@@ -16,7 +19,7 @@ makedocs(
         asset("assets/logo.png", class=:ico, islocal=true)
     ]),
     pages = [
-        "Home"=>"index.md",
+        "总目录"=>"index.md",
         "求解一元方程" => [
             "目录" => "numerical_analysis/equation_solving.md",
             "numerical_analysis/equation_solving/bisect.md",
@@ -48,6 +51,11 @@ makedocs(
             "numerical_analysis/least_square/householder_reflector.md",
             "numerical_analysis/least_square/gmres.md",
             "numerical_analysis/least_square/nolinear_least_square.md",
+        ],
+        "数值微分与积分" => [
+            "目录" => "numerical_analysis/numerical_calculus.md",
+            "numerical_analysis/numerical_calculus/numerical_differential.md",
+            "numerical_analysis/numerical_calculus/numerical_integral.md",
         ]
     ]
 )

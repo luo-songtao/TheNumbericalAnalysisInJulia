@@ -1,6 +1,6 @@
 """
 # 高斯-牛顿方法
-    guass_newton(r, Dr, x_0, k)
+    gauss_newton(r, Dr, x_0, k)
 
 对于非线性最小二乘问题，可以使用高斯牛顿方法求解。
 
@@ -57,7 +57,7 @@ x_{k+1} = x_k - (J^T_rJ_r)^{-1}J^T_rr(x_k)
 
 # Example
 ```julia
-function test_guass_newton()
+function test_gauss_newton()
     # 找到一点，要求离三个圆的距离的平方和最小
     # 圆心坐标
     x1, y1 = -1, 0
@@ -77,19 +77,19 @@ function test_guass_newton()
         (x,y) -> (x-x2)/sqrt((x-x2)^2+ (y-y2)^2) (x,y) -> (y-y2)/sqrt((x-x2)^2+ (y-y2)^2);
         (x,y) -> (x-x3)/sqrt((x-x3)^2+ (y-y3)^2) (x,y) -> (y-y3)/sqrt((x-x3)^2+ (y-y3)^2);
     ]
-    x = round.(guass_newton(r, Dr, [0;0], 10), digits=6)
+    x = round.(gauss_newton(r, Dr, [0;0], 10), digits=6)
     @assert reshape(x, 1,2) == [0.412891 0.0]
     return 
 end
 ```
 ```jldoctest
-julia> test_guass_newton()
+julia> test_gauss_newton()
 2×1 Array{Float64,2}:
  0.412891
  0.0 
 ```
 """
-function guass_newton(r, Dr, x_0, k)
+function gauss_newton(r, Dr, x_0, k)
     m,n = size(Dr)
     x_k = x_0
     for k = 1:k
@@ -104,7 +104,7 @@ end
 push!(LOAD_PATH,"../")
 using EquationSet
 
-function test_guass_newton()
+function test_gauss_newton()
     # 找到一点，要求离三个圆的距离的平方和最小
     # 圆心坐标
     x1, y1 = -1, 0
@@ -124,7 +124,7 @@ function test_guass_newton()
         (x,y) -> (x-x2)/sqrt((x-x2)^2+ (y-y2)^2) (x,y) -> (y-y2)/sqrt((x-x2)^2+ (y-y2)^2);
         (x,y) -> (x-x3)/sqrt((x-x3)^2+ (y-y3)^2) (x,y) -> (y-y3)/sqrt((x-x3)^2+ (y-y3)^2);
     ]
-    x = round.(guass_newton(r, Dr, [0;0], 10), digits=6)
+    x = round.(gauss_newton(r, Dr, [0;0], 10), digits=6)
     @assert reshape(x, 1,2) == [0.412891 0.0]
     return x
 end
