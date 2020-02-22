@@ -1,15 +1,16 @@
 push!(LOAD_PATH,"../src/")
 using Documenter, EquationSolving, EquationSet
-using InterpolationPolynomial, LeastSquare, NumericalCalculus
+using InterpolationPolynomial, LeastSquare, NumericalCalculus, OrdinaryDifferentialEquation
 
 modules = [EquationSolving, EquationSet, InterpolationPolynomial, 
-LeastSquare, NumericalCalculus]
+LeastSquare, NumericalCalculus, OrdinaryDifferentialEquation]
 
 DocMeta.setdocmeta!(EquationSolving, :DocTestSetup, :(using EquationSolving); recursive=true)
 DocMeta.setdocmeta!(EquationSet, :DocTestSetup, :(using EquationSet); recursive=true)
 DocMeta.setdocmeta!(InterpolationPolynomial, :DocTestSetup, :(using InterpolationPolynomial;using EquationSet); recursive=true)
 DocMeta.setdocmeta!(LeastSquare, :DocTestSetup, :(using LeastSquare;); recursive=true)
 DocMeta.setdocmeta!(NumericalCalculus, :DocTestSetup, :(using NumericalCalculus;); recursive=true)
+DocMeta.setdocmeta!(OrdinaryDifferentialEquation, :DocTestSetup, :(using OrdinaryDifferentialEquation;); recursive=true)
 
 makedocs(
     modules = modules,
@@ -56,6 +57,14 @@ makedocs(
             "目录" => "numerical_analysis/numerical_calculus.md",
             "numerical_analysis/numerical_calculus/numerical_differential.md",
             "numerical_analysis/numerical_calculus/numerical_integral.md",
+        ],
+        "常微分方程" => [
+            "目录" => "numerical_analysis/ordinary_differential_equation.md",
+            "numerical_analysis/ordinary_differential_equation/euler.md",
+            "numerical_analysis/ordinary_differential_equation/explicit_trap.md",
+            "numerical_analysis/ordinary_differential_equation/taylor_method.md",
+            "numerical_analysis/ordinary_differential_equation/equations.md",
+            "numerical_analysis/ordinary_differential_equation/the_pendulum.md",
         ]
     ]
 )

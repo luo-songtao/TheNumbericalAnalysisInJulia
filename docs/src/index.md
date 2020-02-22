@@ -53,9 +53,23 @@ Depth = 3
 Pages = [
     "numerical_analysis/numerical_calculus/numerical_differential.md",
     "numerical_analysis/numerical_calculus/numerical_integral.md",
+    "numerical_analysis/ordinary_differential_equation/equations.md",
 ]
 Depth = 3
 ```
+
+## 常微分方程
+```@contents
+Pages = [
+    "numerical_analysis/ordinary_differential_equation/euler.md",
+    "numerical_analysis/ordinary_differential_equation/explicit_trap.md",
+    "numerical_analysis/ordinary_differential_equation/taylor_method.md",
+    "numerical_analysis/ordinary_differential_equation/equations.md",
+    "numerical_analysis/ordinary_differential_equation/the_pendulum.md",
+]
+Depth = 3
+```
+
 
 ## 模块索引
 ```@index
