@@ -5,7 +5,7 @@ CurrentModule = OrdinaryDifferentialEquation
 ```
 
 ```@index
-Pages   = ["the_pendulum.md"]
+Pages   = ["automatic_step_size_methods.md.md"]
 ```
 
 这里讨论将步长h在ODE求解器中作为一个变量。因为问题的解会在缓慢变化的周期和迅速变化的周期之间移动。将固定步长变得足够小使其精度跟踪快速变化，但这意味着解的其他部分求解都会是非常缓慢的。
@@ -20,30 +20,30 @@ Pages   = ["the_pendulum.md"]
 
 ## 误差选择与Runge Kutta嵌入对
 
-最简单的改变步长的方式是将步长加倍或减半，这依赖于当前的误差。用``e_i``表示第i步估计的绝对误差，``e_i/{\\vert \\omega_i \\vert}``表示第i步的相对误差。
-但应该使用绝对误差还是相对误差，应根据情况考虑。但一种好的通用技术是使用混合的``e_i/\\max({\\vert \\omega_i \\vert}, \\theta)``与容差进行比较，其中常数``\\theta>0``，以避免出现较小的``\\omege_i``
+最简单的改变步长的方式是将步长加倍或减半，这依赖于当前的误差。用``e_i``表示第i步估计的绝对误差，``e_i/{\vert \omega_i \vert}``表示第i步的相对误差。
+但应该使用绝对误差还是相对误差，应根据情况考虑。但一种好的通用技术是使用混合的``e_i/\max({\vert \omega_i \vert}, \theta)``与容差进行比较，其中常数``\theta>0``，以避免出现较小的``\omege_i``
 
 选择合适步长的更加复杂的方式与ODE求解器的阶数有关，将设求解器的阶数是``p``，则局部截断误差``e_i =O(h^{p+1})``。
-令``T``是在每步中允许的相对容差，这意味着目的是为了保证``e_i/{\\vert \\omega_i \\vert}<T``
+令``T``是在每步中允许的相对容差，这意味着目的是为了保证``e_i/{\vert \omega_i \vert}<T``
 
 假设对于某个常数``c``：
 ```math
-e_i \\approx ch^{p+1}_i
+e_i \approx ch^{p+1}_i
 ```
 满足容差的最优步长``h``是
 ```math
-T\\vert \\omega_i \\vert = ch^{p+1}
+T\vert \omega_i \vert = ch^{p+1}
 ```
 对于``h``和``c``，则有：
 ```math
-h_* = 0.8(\\frac {T\\vert \\omega_i \\vert}{e_i})^{\\frac 1{p+1}}h_i 
+h_* = 0.8(\frac {T\vert \omega_i \vert}{e_i})^{\frac 1{p+1}}h_i 
 ```
 这里加上了一个安全因子0.8使得方法更加保守
 
-前面提到的方法，都很大程度上依赖于对ODE求解器当前步误差的估计，``e_i = \\vert w_{i=1} - y_{i+1}``。其中一个重要问题是为了获取这样的估计而不需要大量额外计算。
-获取这种误差最长使用的方式是在运行当前感兴趣的ODE求解器的同时，运行更高阶的ODE求解器。更高阶方法对``\\omega_{i+1}``的估计记作``z_{i+1}``,它比原始的``\\omega_{i+1}``更精确，则有：
+前面提到的方法，都很大程度上依赖于对ODE求解器当前步误差的估计，``e_i = \vert w_{i=1} - y_{i+1}``。其中一个重要问题是为了获取这样的估计而不需要大量额外计算。
+获取这种误差最长使用的方式是在运行当前感兴趣的ODE求解器的同时，运行更高阶的ODE求解器。更高阶方法对``\omega_{i+1}``的估计记作``z_{i+1}``,它比原始的``\omega_{i+1}``更精确，则有：
 ```math
-e_{i+1} \\approx \\vert \\omega_{i+1} - z_{i+1}``
+e_{i+1} \approx \vert \omega_{i+1} - z_{i+1}``
 ```
 
 沿着这个思路，则可推出一些Runge Kutta Pairs,一个是``p``阶，另一个是``p+1``阶，它们共享一些所需要的计算，然后用这种方式来使得步长控制的额外代价很低。
@@ -52,5 +52,12 @@ e_{i+1} \\approx \\vert \\omega_{i+1} - z_{i+1}``
 
 ```@autodocs
 Modules = [OrdinaryDifferentialEquation]
-Filter = f -> nameof(f) == :the_pendulum
+Filter = f -> nameof(f) == :rk23
+```
+
+## Runge Kutta: Dormand Prince 4/5
+
+```@autodocs
+Modules = [OrdinaryDifferentialEquation]
+Filter = f -> nameof(f) == :rk45_dp
 ```

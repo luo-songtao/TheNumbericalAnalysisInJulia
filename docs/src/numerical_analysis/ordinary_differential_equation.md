@@ -13,6 +13,7 @@ Pages = [
     "ordinary_differential_equation/equations.md",
     "ordinary_differential_equation/the_pendulum.md",
     "ordinary_differential_equation/runge_kutta.md",
+    "ordinary_differential_equation/automatic_step_size_methods.md",
 ]
 Depth = 3
 ```

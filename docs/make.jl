@@ -66,6 +66,7 @@ makedocs(
             "numerical_analysis/ordinary_differential_equation/equations.md",
             "numerical_analysis/ordinary_differential_equation/the_pendulum.md",
             "numerical_analysis/ordinary_differential_equation/runge_kutta.md",
+            "numerical_analysis/ordinary_differential_equation/automatic_step_size_methods.md",
         ]
     ]
 )

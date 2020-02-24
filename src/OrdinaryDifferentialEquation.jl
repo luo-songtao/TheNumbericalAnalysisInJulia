@@ -25,4 +25,10 @@ export rk4
 include("ordinary_differential_equation/hodgkin_huxley.jl")
 export hodgkin_huxley
 
+include("ordinary_differential_equation/rk45_dp.jl")
+export rk45_dp, test_rk45_dp
+
+include("ordinary_differential_equation/rk23.jl")
+export rk23, test_rk23
+
 end

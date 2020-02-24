@@ -6,7 +6,7 @@ Hodgkin Huxley神经元由4个耦合的微分方程组成，其中一个对神�
 
 方程如下：
 
-!()[../img/hodgkin_huxley.png]
+![](../img/hodgkin_huxley.png)
 
 关于方程：
 - ``v'``：表示单位面积电流方程
