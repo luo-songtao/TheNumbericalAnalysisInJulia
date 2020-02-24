@@ -65,6 +65,7 @@ makedocs(
             "numerical_analysis/ordinary_differential_equation/taylor_method.md",
             "numerical_analysis/ordinary_differential_equation/equations.md",
             "numerical_analysis/ordinary_differential_equation/the_pendulum.md",
+            "numerical_analysis/ordinary_differential_equation/runge_kutta.md",
         ]
     ]
 )

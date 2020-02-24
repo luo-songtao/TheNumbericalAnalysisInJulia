@@ -31,7 +31,7 @@
 - 误差在随着步长的下降而下降，也就是说，**误差看起来和步长成正比**
 
 ```jldoctest
-julia> test_euler()    # 分别表示：步数 步长 误差
+julia> test_method(euler)   # 分别表示：步数 步长 误差
 10×3 Array{Float64,2}:
     5.0  0.2          0.315516   
    10.0  0.1          0.171807   
@@ -46,7 +46,7 @@ julia> test_euler()    # 分别表示：步数 步长 误差
 ```
 
 ```julia
-function test_euler()
+function test_method(method)
     y(t) = 3*exp(1)^(t^2/2)-t^2-2
     dy(t, y) = t*y + t^3
     a,b = [0,1]
@@ -54,7 +54,7 @@ function test_euler()
     n = 5
     for i = 1:10
         h = 1/n
-        err = y(1) - euler(dy, a, b, 1, n)
+        err = abs(y(1) - method(dy, a, b, 1, n))
         result[i, :] = [n h err]
         n = 2n
     end
@@ -71,17 +71,3 @@ function euler(df, a, b, y_0, n)
     return ω_i
 end
 
-function test_euler()
-    y(t) = 3*exp(1)^(t^2/2)-t^2-2
-    dy(t, y) = t*y + t^3
-    a,b = [0,1]
-    result = zeros(10,3)
-    n = 5
-    for i = 1:10
-        h = 1/n
-        err = y(1) - euler(dy, a, b, 1, n)
-        result[i, :] = [n h err]
-        n = 2n
-    end
-    return result
-end

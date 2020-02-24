@@ -12,6 +12,7 @@ Pages = [
     "ordinary_differential_equation/taylor_method.md",
     "ordinary_differential_equation/equations.md",
     "ordinary_differential_equation/the_pendulum.md",
+    "ordinary_differential_equation/runge_kutta.md",
 ]
 Depth = 3
 ```
